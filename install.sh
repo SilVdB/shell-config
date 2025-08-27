@@ -523,7 +523,7 @@ USAGE
     printf "  • neovim     - Modern Vim editor\n"
     printf "  • luarocks   - Lua package manager\n"
     printf "  • tree-sitter - Parser for syntax highlighting\n"
-    printf "  • starship   - Cross-shell prompt\n"
+    printf "  • starship   - Cross-shell prompt (Zsh/Bash only, Fish uses custom)\n"
     printf "  • bat        - Cat with syntax highlighting\n"
     printf "  • eza        - Modern replacement for ls\n"
     printf "  • ripgrep    - Fast grep alternative\n"
@@ -563,7 +563,7 @@ USAGE
       "zsh-autosuggestions"
       "zsh-completions"
       # Core tools from shell configs
-      "starship"       # Modern prompt (used in 70-prompt.bash)
+      "starship"       # Modern prompt (used in 70-prompt.bash, but Fish uses custom prompt)
       "bat"            # Better cat (used in 20-fzf.bash for preview)
       "eza"            # Better ls (used in 10-aliases.bash)
       "fd"             # Better find (used in 20-fzf.bash)
@@ -735,7 +735,15 @@ USAGE
     if command -v bun &> /dev/null; then
       log_success "Bun is already installed"
       log_info "Updating Bun to latest version..."
-      bun upgrade
+      if ! bun upgrade 2>/dev/null; then
+        log_warning "Bun upgrade failed with error: ${?}"
+        log_info "Please upgrade manually:"
+        log_info "  curl -fsSL https://bun.sh/install | bash"
+        log_info "Attempting to reinstall Bun..."
+        curl -fsSL https://bun.sh/install | bash && log_success "Bun reinstalled successfully" || log_warning "Bun reinstall also failed"
+      else
+        log_success "Bun updated successfully"
+      fi
     else
       log_info "Installing Bun via official installer..."
       curl -fsSL https://bun.sh/install | bash
@@ -1285,7 +1293,7 @@ EOF
 
   print_color "$CYAN" "Installed tools:"
   printf "  • neovim     - Modern Vim with LazyVim config\n"
-  printf "  • starship   - Cross-shell prompt\n"
+  printf "  • starship   - Cross-shell prompt (Zsh/Bash only, Fish uses custom)\n"
   printf "  • bat        - Cat with syntax highlighting\n"
   printf "  • eza        - Modern replacement for ls\n"
   printf "  • ripgrep    - Fast grep alternative\n"
@@ -1303,14 +1311,14 @@ EOF
 
   print_color "$CYAN" "Configuration files installed:"
   printf "  • ~/.config/fish/config.fish\n"
-  printf "  • ~/.config/fish/conf.d/ (Fish modular configuration)\n"
+  printf "  • ~/.config/fish/conf.d/ (Fish modular configuration with custom prompt)\n"
   printf "  • ~/.zshrc\n"
   printf "  • ~/.config/zsh/conf.d/ (Zsh modular configuration)\n"
   printf "  • ~/.bashrc\n"
   printf "  • ~/.bash_profile\n"
   printf "  • ~/.config/bash/conf.d/ (Bash modular configuration)\n"
   printf "  • ~/.config/nvim/ (LazyVim configuration)\n"
-  printf "  • ~/.config/starship.toml\n"
+  printf "  • ~/.config/starship.toml (for Zsh/Bash, Fish uses custom prompt)\n"
   printf "  • ~/Library/Application Support/com.mitchellh.ghostty/config\n"
   printf "\n"
 
