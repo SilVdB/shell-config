@@ -7,21 +7,26 @@ palette = "catppuccin_mocha"
 
 add_newline = true
 command_timeout = 200
-format = "[$directory$git_branch]($style)$character"
+format = "$directory$git_branch$kubernetes$character"
 
 [character]
 error_symbol = "[✗](bold red)"
 success_symbol = "[❯](bold green)[❯](bold yellow)[❯](bold peach)"
 
 [directory]
-truncation_length = 2
+truncation_length = 0
 truncation_symbol = "…/"
 repo_root_style = "bold cyan"
 repo_root_format = "[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
+style = "bold blue"
 
 [git_branch]
-format = "[$branch]($style) "
-style = "bold"
+format = " git:([$branch]($style)) "
+style = "bold green"
+
+[kubernetes]
+format = ' (⎈|[$context](bold blue):[$namespace](bold yellow)) '
+disabled = false
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"

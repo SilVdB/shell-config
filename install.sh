@@ -523,7 +523,7 @@ USAGE
     printf "  • neovim     - Modern Vim editor\n"
     printf "  • luarocks   - Lua package manager\n"
     printf "  • tree-sitter - Parser for syntax highlighting\n"
-    printf "  • starship   - Cross-shell prompt (Zsh/Bash only, Fish uses custom)\n"
+    printf "  • starship   - Cross-shell prompt for all shells\n"
     printf "  • bat        - Cat with syntax highlighting\n"
     printf "  • eza        - Modern replacement for ls\n"
     printf "  • ripgrep    - Fast grep alternative\n"
@@ -563,7 +563,7 @@ USAGE
       "zsh-autosuggestions"
       "zsh-completions"
       # Core tools from shell configs
-      "starship"       # Modern prompt (used in 70-prompt.bash, but Fish uses custom prompt)
+      "starship"       # Modern prompt for all shells
       "bat"            # Better cat (used in 20-fzf.bash for preview)
       "eza"            # Better ls (used in 10-aliases.bash)
       "fd"             # Better find (used in 20-fzf.bash)
@@ -1293,7 +1293,7 @@ EOF
 
   print_color "$CYAN" "Installed tools:"
   printf "  • neovim     - Modern Vim with LazyVim config\n"
-  printf "  • starship   - Cross-shell prompt (Zsh/Bash only, Fish uses custom)\n"
+  printf "  • starship   - Cross-shell prompt for all shells\n"
   printf "  • bat        - Cat with syntax highlighting\n"
   printf "  • eza        - Modern replacement for ls\n"
   printf "  • ripgrep    - Fast grep alternative\n"
@@ -1311,14 +1311,14 @@ EOF
 
   print_color "$CYAN" "Configuration files installed:"
   printf "  • ~/.config/fish/config.fish\n"
-  printf "  • ~/.config/fish/conf.d/ (Fish modular configuration with custom prompt)\n"
+  printf "  • ~/.config/fish/conf.d/ (Fish modular configuration)\n"
   printf "  • ~/.zshrc\n"
   printf "  • ~/.config/zsh/conf.d/ (Zsh modular configuration)\n"
   printf "  • ~/.bashrc\n"
   printf "  • ~/.bash_profile\n"
   printf "  • ~/.config/bash/conf.d/ (Bash modular configuration)\n"
   printf "  • ~/.config/nvim/ (LazyVim configuration)\n"
-  printf "  • ~/.config/starship.toml (for Zsh/Bash, Fish uses custom prompt)\n"
+  printf "  • ~/.config/starship.toml (shared across all shells)\n"
   printf "  • ~/Library/Application Support/com.mitchellh.ghostty/config\n"
   printf "\n"
 
